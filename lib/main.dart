@@ -1,56 +1,38 @@
 import 'package:flutter/material.dart';
+import './components/transaction_user.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ExpensesApp());
 }
 
-class MyApp extends StatelessWidget {
-
+class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Despesas Pessoais',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Despesas Pessoais'),
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
         title: Text("Despesas Pessoais"),
       ),
       body: Column(
-
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                child:Text("Gráfico"),
-              ),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            child: Card(
+              child: Text("Gráfico"),
             ),
-            Card(child: Text("Lista de Transações"))
-          ],
-        ),
+          ),
+          TransactionUser(),
+        ],
+      ),
     );
   }
 }
