@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:despesas_flutter_app/components/transaction_form.dart';
 import 'package:flutter/material.dart';
-import './components/transaction_user.dart';
 import 'components/transaction_list.dart';
 import 'models/transaction.dart';
 
@@ -16,6 +15,20 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        accentColor: Colors.amber,
+        fontFamily: "Roboto",
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+           headline6: TextStyle(
+             fontFamily: "Roboto",
+             fontSize: 20,
+             fontWeight: FontWeight.bold
+           )
+          ),
+        ),
+      ),
     );
   }
 }
@@ -26,21 +39,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  var _transactions = [
-    Transaction(
-      id: "t1",
-      title: "Novo Tênis de Corrida",
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t2",
-      title: "Conta de Luz",
-      value: 211.30,
-      date: DateTime.now(),
-    )
-  ];
+  List<Transaction> _transactions = [];
 
   _addTransaciton(String title, double value) {
     final newTransaction = Transaction(
@@ -55,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
-  _OpenTransactionFormModal(BuildContext context) {
+  _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
         builder: (_) {
@@ -71,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.add),
-            onPressed:()=> _OpenTransactionFormModal(context),
+            onPressed: () => _openTransactionFormModal(context),
           )
         ],
       ),
@@ -90,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: ()=> _OpenTransactionFormModal(context),
+        onPressed: () => _openTransactionFormModal(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
