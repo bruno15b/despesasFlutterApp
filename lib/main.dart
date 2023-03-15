@@ -26,8 +26,8 @@ class MyHomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
-            child: Card(
-              child: Text("Gráfico"),
+           child: Card(
+             child: Text("Gráfico"),
             ),
           ),
           TransactionUser(),

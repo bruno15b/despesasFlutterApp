@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import './transaction_form.dart';
@@ -9,8 +11,7 @@ class TransactionUser extends StatefulWidget {
 }
 
 class _TransactionUserState extends State<TransactionUser> {
-
-  final _transactions = [
+  var _transactions = [
     Transaction(
       id: "t1",
       title: "Novo Tênis de Corrida",
@@ -24,11 +25,26 @@ class _TransactionUserState extends State<TransactionUser> {
       date: DateTime.now(),
     ),
   ];
+
+  _addTransaciton(String title, double value) {
+    final newTransaction = Transaction(
+      id: Random().nextDouble().toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
+    );
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      TransactionList(this._transactions),
-      TransactionForm(),
-    ],);
+    return Column(
+      children: [
+        TransactionList(this._transactions),
+        TransactionForm(this._addTransaciton),
+      ],
+    );
   }
 }
