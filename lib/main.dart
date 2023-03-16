@@ -21,10 +21,12 @@ class ExpensesApp extends StatelessWidget {
         fontFamily: "Roboto",
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
+                headline6: TextStyle(
                   fontFamily: "Roboto",
                   fontSize: 20,
-                  fontWeight: FontWeight.bold)),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
         ),
       ),
     );
@@ -37,48 +39,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Transaction> _transactions = [
-    Transaction(
-      id: "t1",
-      title: "PS5",
-      value: 4900,
-      date: DateTime.now().subtract(Duration(days: 1)),
-    ),
-    Transaction(
-      id: "t2",
-      title: "Monitor",
-      value: 1299.5,
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    Transaction(
-        id: "t3",
-        title: "Mouse",
-        value: 499.99,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-      id: "t4",
-      title: "Ipad",
-      value: 4900,
-      date: DateTime.now().subtract(Duration(days: 4)),
-    ),
-    Transaction(
-      id: "t5",
-      title: "Bike",
-      value: 1600,
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-    Transaction(
-        id: "t6",
-        title: "Mercado",
-        value: 601.87,
-        date: DateTime.now().subtract(Duration(days: 6))),
-    Transaction(
-      id: "t7",
-      title: "PS2",
-      value: 1500,
-      date: DateTime.now(),
-    ),
-  ];
+  List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -86,12 +47,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _addTransaciton(String title, double value) {
+  _addTransaciton(String title, double value,DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
     setState(() {
       _transactions.add(newTransaction);
